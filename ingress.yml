@@ -13,6 +13,13 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: clusterip
+            name: frontend-clusterip
             port:
               number: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 5432
