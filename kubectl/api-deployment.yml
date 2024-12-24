@@ -14,10 +14,13 @@ spec:
     spec:
       containers:
         - name: short-api
-          image: antonlarichev/short-api
+          image: antonlarichev/short-api:v1.0
+          env:
+          - name: DATABASE_URL
+            value: "postgresql://demo:demo@postgres-clusterip:5432/demo"
           ports:
             - containerPort: 3000          
           resources:
             limits:
-              memory: "128Mi"
+              memory: "500Mi"
               cpu: "200m"
