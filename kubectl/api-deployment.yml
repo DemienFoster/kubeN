@@ -17,7 +17,10 @@ spec:
           image: antonlarichev/short-api:v1.0
           env:
           - name: DATABASE_URL
-            value: "postgresql://demo:demo@postgres-clusterip:5432/demo"
+            valueFrom:
+              secretKeyRef:
+                name: api-secret
+                key: DATABASE_URL
           ports:
             - containerPort: 3000          
           resources:
