@@ -2,8 +2,19 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: demo-config
-data:
-  key: {{ .Release.Name }}
+data:  
   name: {{ .Values.name | upper | quote}}
-  chart: {{ quote .Chart.AppVersion }}
-  date: {{ now | date "2006-01-02" | quote }}
+  {{- if eq .Values.env "production" }}
+  paymentToken: "1234"
+  {{- else if eq .Values.env "test" }}
+  paymentToken: "9876"
+  {{- end }} 
+  {{- with .Values.value.requirements.limits }}
+  memory: {{ .memory }}
+  cpu: {{ .cpu }}
+  version: {{ $.Values.app.version }}
+  {{- end }}
+  users: 
+    {{- range .Values.users }}
+    - {{ .name }}: {{ .role }}
+    {{- end }}

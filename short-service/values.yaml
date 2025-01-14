@@ -9,3 +9,16 @@ app:
   limits:
     memory: "500Mi"
     cpu: "200m"
+
+env: test
+value:
+  requirements:
+    limits:
+      memory: "500Mi"
+      cpu: "200m"
+
+users:
+  - name: Anton
+    role: admin    
+  - name: Viktop
+    role: proger
